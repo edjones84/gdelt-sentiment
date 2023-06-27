@@ -7,3 +7,4 @@ TIME: Final[str] = "1d"
 DESTINATION_LANG: Final[str] = "en"
 REQUEST_HEADERS: Final[dict[str, str]] = {'User-agent': 'gdelt bot'}
 ALT_ISO691_COUNTRY_CODES: Final[dict[str, str]] = {'chinese': 'zh-CN', 'hebrew': 'iw'}
+DEFAULT_VALUE: Final[str] = "N/A"
