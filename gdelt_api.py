@@ -68,6 +68,7 @@ def translated_dict_gen(gdelt_dict_in: dict[str, str]) -> dict[str, str]:
     """Take on a dictionary that was generated from the gdelt and translate all titles, maintaining the origin
     language """
     return {
+        **{'original_title': gdelt_dict_in['title']},
         **{'title': translate_text(source_lang=gdelt_dict_in['language'].lower(), text=gdelt_dict_in['title'])},
         **{'language': gdelt_dict_in['language']}
     }
@@ -79,9 +80,10 @@ def extract_titles(returned_request: dict[str, Any]) -> Articles:
     articles = returned_request['articles']
     with ThreadPool(processes=10) as pool:
         extracted_titles = pool.map(translated_dict_gen, articles)
-    return Articles( articles=[Article(
+    return Articles(articles=[Article(
                      url=item.get('url', DEFAULT_VALUE),
                      url_mobile=item.get('url_mobile', DEFAULT_VALUE),
+                     original_title=item.get('original_title', DEFAULT_VALUE),
                      title=item.get('title', DEFAULT_VALUE),
                      seendate=item.get('seendate', DEFAULT_VALUE),
                      socialimage=item.get('socialimage', DEFAULT_VALUE),
@@ -107,6 +109,7 @@ def sentiment_dictionary_gen(list_to_analyse: Articles) -> QueryResponses:
             neu=tmp_dict['neu'],
             pos=tmp_dict['pos'],
             compound=tmp_dict['compound'],
+            original_title=item.original_title,
             title=item.title,
             origin_language=item.language
             )

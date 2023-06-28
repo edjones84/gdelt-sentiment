@@ -4,6 +4,7 @@ from pydantic import BaseModel
 class Article(BaseModel):
     url: str
     url_mobile: str
+    original_title: str
     title: str
     seendate: str
     socialimage: str
@@ -21,6 +22,7 @@ class QueryResponse(BaseModel):
     neu: float
     pos: float
     compound: float
+    original_title: str
     title: str
     origin_language: str
 

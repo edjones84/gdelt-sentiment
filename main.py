@@ -14,5 +14,6 @@ def query_endpoint(query_request: str) -> QueryResponses:
     scores_out = sentiment_dictionary_gen(titles)
     return scores_out
 
+
 if __name__ == '__main__':
     uvicorn.run(app, host="0.0.0.0", port=8000)
