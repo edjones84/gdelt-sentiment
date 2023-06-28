@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Query Form</title>
+</head>
+<body>
+  <h1>Query Form</h1>
+  <form id="queryForm">
+    <label for="queryInput">Enter your query:</label>
+    <input type="text" id="queryInput" name="queryInput">
+    <button type="submit">Submit</button>
+  </form>
+  <div id="resultsContainer"></div>
+
+  <script>
+    const queryForm = document.getElementById('queryForm');
+    const resultsContainer = document.getElementById('resultsContainer');
+
+    queryForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const queryInput = document.getElementById('queryInput').value;
+      sendQuery(queryInput);
+    });
+
+    async function sendQuery(query) {
+      const response = await fetch('/query', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ query_request: query })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        displayResults(data);
+      } else {
+        console.error('Query failed.');
+      }
+    }
+
+    function displayResults(data) {
+      resultsContainer.innerHTML = '';
+
+      data.forEach((result) => {
+        const resultDiv = document.createElement('div');
+        resultDiv.classList.add('result');
+
+        const title = document.createElement('h2');
+        title.textContent = result.title;
+        resultDiv.appendChild(title);
+
+        const originalTitle = document.createElement('p');
+        originalTitle.textContent = `Original Title: ${result.original_title}`;
+        resultDiv.appendChild(originalTitle);
+
+        const sentiment = document.createElement('p');
+        sentiment.textContent = `Sentiment - neg: ${result.neg}, neu: ${result.neu}, pos: ${result.pos}, compound: ${result.compound}`;
+        resultDiv.appendChild(sentiment);
+
+        const originLanguage = document.createElement('p');
+        originLanguage.textContent = `Origin Language: ${result.origin_language}`;
+        resultDiv.appendChild(originLanguage);
+
+        resultsContainer.appendChild(resultDiv);
+      });
+    }
+  </script>
+</body>
+</html>
