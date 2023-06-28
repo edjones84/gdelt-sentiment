@@ -29,9 +29,19 @@ Before running the front-end, ensure that you have the following installed:
    npm install -g http-server
    ```
    
-4. Start the FastAPI server
+4. Start the FastAPI server in the /backend directory 
+   
+   ```shell
+   uvicorn main:app --reload  
+   ```
 
-5. Start the http server
+5. Start the http server in the /frontend directory 
+
+   ```shell
+   http-server 
+   ```
+
+6. Navigate to http://192.168.1.203:8080/ and query away!
 
 ## Usage
 
