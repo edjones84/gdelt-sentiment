@@ -7,7 +7,6 @@ It allows users to submit queries to a GDELT API and receive sentiment analysis 
 
 Before running the front-end, ensure that you have the following installed:
 
-- Node.js (version X.X.X)
 - FastAPI server (already set up and running)
 
 ## Installation
@@ -24,11 +23,15 @@ Before running the front-end, ensure that you have the following installed:
    cd gdelt-sentiment
    ```
 
-3. Install the dependencies:
+3. Install the http server :
 
    ```shell
-   npm install
+   npm install -g http-server
    ```
+   
+4. Start the FastAPI server
+
+5. Start the http server
 
 ## Usage
 
@@ -44,9 +47,9 @@ Before running the front-end, ensure that you have the following installed:
 
 The front-end interacts with the following API endpoint:
 
-- Endpoint: `/query`
-- Method: POST
-- Request Payload: JSON object with a single property `query_request` containing the query string.
+- Endpoint: `/`
+- Method: get
+- Request Payload: JSON object with a single property `queryInput` containing the query string.
 - Response Format: JSON object with the following properties:
   - `neg`: float - Negative sentiment score
   - `neu`: float - Neutral sentiment score
@@ -56,4 +59,4 @@ The front-end interacts with the following API endpoint:
   - `title`: str - Title of the response
   - `origin_language`: str - Language of the response
 
-Ensure that the FastAPI server is up and running and that the endpoint is accessible at `http://localhost:8000/query`.
+Ensure that the FastAPI server is up and running and that the endpoint is accessible at `http://localhost:8000/`.
