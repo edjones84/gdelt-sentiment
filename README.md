@@ -3,6 +3,9 @@
 This project provides a basic front-end interface to interact with the query endpoint of a FastAPI server.
 It allows users to submit queries to a GDELT API and receive sentiment analysis scores for the corresponding query responses.
 
+![Screenshot 2023-07-06 at 15 37 04](https://github.com/edjones84/gdelt-sentiment/assets/78102381/34365079-3fb6-4b2f-9af0-e56ae5eb2e54)
+
+
 ## Prerequisites
 
 Before running the front-end, ensure that you have the following installed:
