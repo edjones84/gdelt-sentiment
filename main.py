@@ -6,17 +6,16 @@ from fastapi.encoders import jsonable_encoder
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import Response
 
-from gdelt_api import make_request, extract_titles, sentiment_dictionary_gen
-from schema import QueryResponses
+from backend.src.gdelt_api import make_request, extract_titles, sentiment_dictionary_gen
+from backend.src.schema import QueryResponses
 
 app = FastAPI()
 
 origins = [
-    "http://localhost",
-    "http://localhost:8000"
-    "http://localhost:8080",
-    "http://192.168.1.203:8080"  # Add the origin that's making the request
+    "*"  # Add the origin that's making the request
 ]
+
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -27,7 +26,12 @@ app.add_middleware(
 )
 
 
-@app.get("/", response_model=QueryResponses)
+@app.get("/")
+async def root():
+    return {"message": "This is the initial Fast api implementation"}
+
+
+@app.get("/endpoint", response_model=QueryResponses)
 def query_endpoint(queryInput: str = Query(..., alias="queryInput")) -> Response:
     response_json = make_request(queryInput)
     titles = extract_titles(response_json)

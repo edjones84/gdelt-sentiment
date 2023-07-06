@@ -13,6 +13,9 @@ class Article(BaseModel):
     sourcecountry: str
 
 
+Article.update_forward_refs()
+
+
 class Articles(BaseModel):
     articles: list[Article]
 
@@ -25,6 +28,9 @@ class QueryResponse(BaseModel):
     original_title: str
     title: str
     origin_language: str
+
+
+QueryResponse.update_forward_refs()
 
 
 class QueryResponses(BaseModel):

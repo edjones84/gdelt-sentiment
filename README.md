@@ -29,7 +29,7 @@ Before running the front-end, ensure that you have the following installed:
    npm install -g http-server
    ```
    
-4. Start the FastAPI server in the /backend directory 
+4. Start the FastAPI server in the root of the directory 
    
    ```shell
    uvicorn main:app --reload  
@@ -57,7 +57,7 @@ Before running the front-end, ensure that you have the following installed:
 
 The front-end interacts with the following API endpoint:
 
-- Endpoint: `/`
+- Endpoint: `/query`
 - Method: get
 - Request Payload: JSON object with a single property `queryInput` containing the query string.
 - Response Format: JSON object with the following properties:
@@ -70,3 +70,11 @@ The front-end interacts with the following API endpoint:
   - `origin_language`: str - Language of the response
 
 Ensure that the FastAPI server is up and running and that the endpoint is accessible at `http://localhost:8000/`.
+
+## Testing
+
+This code utilises Cucumber for BDD and integration testing, ensure the FASTAPI endpoint is up and running before running the following command in the tests directory:
+
+```bash
+behave
+```

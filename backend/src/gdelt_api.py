@@ -12,9 +12,9 @@ from requests import Response
 from nltk.sentiment import SentimentIntensityAnalyzer
 from deep_translator import GoogleTranslator
 import iso639
-from app_const import BASE_URL, RECORDS, TIME, REQUEST_HEADERS, DESTINATION_LANG, ALT_ISO691_COUNTRY_CODES, \
+from backend.src.app_const import BASE_URL, RECORDS, TIME, REQUEST_HEADERS, DESTINATION_LANG, ALT_ISO691_COUNTRY_CODES, \
     DEFAULT_VALUE
-from schema import Article, Articles, QueryResponse, QueryResponses
+from backend.src.schema import Article, Articles, QueryResponse, QueryResponses
 
 nltk.downloader.download('vader_lexicon')
 

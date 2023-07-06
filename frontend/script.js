@@ -8,7 +8,7 @@ form.addEventListener('submit', async (event) => {
     const query = queryInput.value;
 
     try {
-        const response = await fetch(`http://localhost:8000/?queryInput=${encodeURIComponent(query)}`);
+        const response = await fetch(`http://localhost:8000/endpoint?queryInput=${encodeURIComponent(query)}`);
         const data = await response.json();
 
         console.log('Response Data:', data); // Log the response data for debugging purposes
